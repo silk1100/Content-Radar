@@ -46,7 +46,7 @@ class ContentItem(BaseModel):
     url: Optional[str] = None
     author: str
     published_at: datetime
-    ingested_at: datetime = Field(default_factory=datetime.now(dt.timezone.utc))
+    ingested_at: datetime = Field(default_factory=lambda: datetime.now(dt.timezone.utc))
 
     # Source-specific metadata (subredit, score, fliar, etc.)
     source_metadata: dict[str, Any] = Field(default_factory=dict)
@@ -65,11 +65,11 @@ class InterestProfile(BaseModel):
     id: UUID = Field(default_factory=uuid4)
     description: str     # Natural language interest description
     embedding: Optional[list[float]]  # Embedded version of the description
-    updated_at: datetime = Field(default_factory=datetime.now(dt.timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda :datetime.now(dt.timezone.utc))
 
 class PipelineRun(BaseModel):
     id: UUID = Field(default_factory=uuid4)
-    started_at: datetime = Field(default_factory=datetime.now(dt.timezone.utc))
+    started_at: datetime = Field(default_factory=lambda: datetime.now(dt.timezone.utc))
     completed_at: Optional[datetime] = None
     status: PipelineStatus = PipelineStatus.PENDING
 

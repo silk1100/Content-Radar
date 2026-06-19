@@ -1,16 +1,18 @@
+from urllib.parse import quote_plus, urlparse
+
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from sqlalchemy.engine import URL
+
 
 class Settings(BaseSettings):
-
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        case_sensitive=False
+        case_sensitive=False,
+        extra="ignore",
     )
-
-    # --- Supabase ---
-    supabase_url: str
-    supabase_key: str
+    SUPABASE_DATABASE_URL: str
 
     # --- Reddit ---
     reddit_client_id: str
@@ -26,8 +28,9 @@ class Settings(BaseSettings):
     brief_summary_count: int = 20
 
     # --- LLM (Phase 2) ---
-    model_key: str
+    llm_key: str
     llm_model: str
 
-settings = Settings()
 
+settings = Settings()
+x = 0
