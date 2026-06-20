@@ -44,7 +44,7 @@ class ContentItem(BaseModel):
     title: str
     body: str
     url: Optional[str] = None
-    author: str
+    author: Optional[str]=None
     published_at: datetime
     ingested_at: datetime = Field(default_factory=lambda: datetime.now(dt.timezone.utc))
 
@@ -60,6 +60,7 @@ class ContentItem(BaseModel):
     # Filled by route.py and summarize.py
     summary_tier: SummaryTier = SummaryTier.NONE
     summary: Optional[str] = None
+
 
 class InterestProfile(BaseModel):
     id: UUID = Field(default_factory=uuid4)

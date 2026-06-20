@@ -28,7 +28,8 @@ class Settings(BaseSettings):
     brief_summary_count: int = 20
 
     # --- LLM (Phase 2) ---
-    llm_key: str
+    llm_url: str = "http://localhost:11434/v1"
+    llm_key: str = "ollama"
     llm_model: str
 
 
